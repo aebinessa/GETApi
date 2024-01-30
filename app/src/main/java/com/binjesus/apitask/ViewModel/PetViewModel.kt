@@ -34,6 +34,35 @@ class PetViewModel : ViewModel() {
             }
         }
     }
+
+    fun addPet(pet: Pet) {
+        viewModelScope.launch {
+            try {
+                val response = petApiService.addPet(pet)
+                if (response.isSuccessful && response.body() != null) {
+                    // Handle successful addition of the book, e.g., updating the UI or list of books
+                } else {
+                    // Handle failure, e.g., showing an error message
+                }
+            } catch (e: Exception) {
+                // Handle any exceptions, e.g., network errors
+            }
+        }
+    }
+    fun deletePet(petID: Int) {
+        viewModelScope.launch {
+            try {
+                val response = petApiService.deleteBook(petID)
+                if (response.isSuccessful) {
+
+                } else {
+                    // Handle failure, e.g., showing an error message
+                }
+            } catch (e: Exception) {
+                // Handle any exceptions, e.g., network errors
+            }
+        }
+    }
 }
 
 

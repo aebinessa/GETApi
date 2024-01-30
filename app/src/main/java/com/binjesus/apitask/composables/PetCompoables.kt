@@ -1,9 +1,7 @@
 package com.binjesus.apitask.composables
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,6 +12,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.magnifier
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -25,14 +24,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.binjesus.apitask.ViewModel.PetViewModel
 import com.binjesus.apitask.model.Pet
 
 @Composable
-fun PetListScreen(viewModel: PetViewModel) {
+fun PetListScreen(viewModel: PetViewModel, modifier: Modifier = Modifier) {
     val pets = viewModel.pets
-    LazyColumn {
+    LazyColumn(modifier = modifier) {
         items(pets) { pet ->
             PetItem(pet)
         }
@@ -40,7 +40,7 @@ fun PetListScreen(viewModel: PetViewModel) {
 }
 
 @Composable
-fun PetItem(pet: Pet) {
+fun PetItem(pet: Pet, petViewModel : PetViewModel = viewModel()) {
     Card(
         modifier = Modifier
             .padding(20.dp)
@@ -79,6 +79,10 @@ fun PetItem(pet: Pet) {
 
 
             }
+
+            }
+        Button(onClick = { petViewModel.deletePet(pet.id) }) {
+            Text("Delete")
         }
     }
 }
