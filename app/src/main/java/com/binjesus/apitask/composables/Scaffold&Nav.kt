@@ -33,7 +33,7 @@ fun AppContent() {
                 PetListScreen(viewModel = petViewModel, modifier = Modifier.padding(padding))
             }
             composable("addPet") {
-                AddPetScreen()
+                AddPetScreen(petViewModel = petViewModel)
 
             }
         }

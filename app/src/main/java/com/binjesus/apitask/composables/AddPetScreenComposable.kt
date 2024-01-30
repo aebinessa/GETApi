@@ -28,11 +28,7 @@ import com.binjesus.apitask.model.Pet
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun AddPetScreen() {
-
-    val petViewModel: PetViewModel = viewModel()
-
-
+fun AddPetScreen(petViewModel: PetViewModel = viewModel()) {
     var id by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
     var adopted by remember { mutableStateOf("") }

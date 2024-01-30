@@ -30,11 +30,10 @@ import com.binjesus.apitask.ViewModel.PetViewModel
 import com.binjesus.apitask.model.Pet
 
 @Composable
-fun PetListScreen(viewModel: PetViewModel, modifier: Modifier = Modifier) {
+fun PetListScreen(viewModel: PetViewModel = viewModel(), modifier: Modifier = Modifier) {
     val pets = viewModel.pets
-    LazyColumn(modifier = modifier) {
-        items(pets) { pet ->
-            PetItem(pet)
+    Laeems(pets) { pet ->
+            PetItem(pet, viewModel)
         }
     }
 }
@@ -81,7 +80,10 @@ fun PetItem(pet: Pet, petViewModel : PetViewModel = viewModel()) {
             }
 
             }
-        Button(onClick = { petViewModel.deletePet(pet.id) }) {
+        Button(onClick = {
+            petViewModel.deletePet(pet.id)
+            petViewModel.fetchPets()
+        }) {
             Text("Delete")
         }
     }
