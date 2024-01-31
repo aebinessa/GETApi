@@ -32,7 +32,8 @@ import com.binjesus.apitask.model.Pet
 @Composable
 fun PetListScreen(viewModel: PetViewModel = viewModel(), modifier: Modifier = Modifier) {
     val pets = viewModel.pets
-    Laeems(pets) { pet ->
+    LazyColumn(modifier = modifier) {
+        items(pets) { pet ->
             PetItem(pet, viewModel)
         }
     }
